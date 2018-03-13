@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adding Array Members</title>
+    <style>
+        body { font-family: "Monaco", sans-serif; }
+        .container {
+            height: auto;
+            overflow: hidden;
+            width: 600px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        td {
+            height: auto;
+            vertical-align: top;
+            width: 300px;
+        }
+
+        .data td {
+            border: 1px dotted #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="GET">
+            <table>
+                <tr>
+                    <td><label>Size of collection:</label></td>
+                    <td><input type="number" name="size" min="0" max="1000" required></td>
+                </tr>
+                <tr>
+                    <td><label>Random numbers between:</label></td>
+                    <td>
+                        <input type="number" name="min" min="0" max="1000" required> to
+                        <input type="number" name="max" min="0" max="1000" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">see collection and total</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <table class="data">
+            <tr>
+                <td>collection:</td>
+                <td><em>no data available</em></td>
+            </tr>
+            <tr>
+                <td>total:</td>
+                <td><em>no data available</em></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var data = {
+            targets: {
+                results: document.getElementsByClassName("data"),
+                body: document.getElementsByTagName("body"),
+                fields: document.getElementsByTagName("input"),
+                loc: window.location
+            },
+            templates: ["<tr><td><strong>%header%</strong></td><td>%data%</td></tr>"],
+            scriptName: "addingArrays.js",
+            v: Math.random(0, 1000) * 1000,
+            script: document.createElement("script")
+        };
+        // enqueue the script
+        data.script.src = data.scriptName + "?v=" + data.v.toString().replace(".", "");
+        data.targets.body[0].appendChild(data.script);
+    </script>
+</body>
+</html>
